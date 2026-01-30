@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <title>Nativo · Boxy Fit 240g</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="#" class="logo">
+        <img src="icons/logoimpreso.png" alt="Nativo">
+      </a>
+      <nav class="social">
+        <a href="https://instagram.com/nativo.st" target="_blank" aria-label="Instagram Nativo">
+          <img src="icons/instagram.png" alt="">
+        </a>
+        <a href="https://www.facebook.com/people/Nativo/61586116301114/" target="_blank" aria-label="Facebook Nativo">
+          <img src="icons/facebook.png" alt="">
+        </a>
+        <a href="https://wa.me/523951024699" target="_blank" aria-label="WhatsApp Nativo">
+          <img src="icons/whatsapp.png" alt="">
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-media">
+      <picture>
+        <source media="(min-width: 481px)" srcset="icons/iglesia.png">
+        <img src="icons/iglesia.png" alt="Basílica San Juan de los Lagos" class="hero-img">
+      </picture>
+    </div>
+    <div class="hero-layer"></div>
+    <div class="hero-text-block">
+      <h1>Nativo</h1>
+      <div class="hero-meta">
+        <p class="tag">Boxy Fit 240 g</p>
+        <p class="location">San Juan de los Lagos</p>
+      </div>
+      <p class="lead">Algodón premium. Corte contemporáneo.<br>Entrega a Domicilio. Pago al recibir.</p>
+    </div>
+  </section>
+
+  <section class="collection">
+    <div class="collection-header">
+      <h2>Nuestras Piezas</h2>
+    </div>
+    <div class="items-grid">
+      <article class="item">
+        <div class="item-media">
+          <img src="https://images.pexels.com/photos/8217536/pexels-photo-8217536.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Camisa Blanca" loading="lazy">
+        </div>
+        <div class="item-info">
+          <h3>Blanca</h3>
+          <p class="desc">Boxy fit relajado · 240g algodón premium</p>
+          <div class="price-action">
+            <span class="price">$480</span>
+            <a href="#" class="btn" data-product="Camisa Blanca Nativo - $480" data-image="https://images.pexels.com/photos/8217536/pexels-photo-8217536.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">Pedir →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="item item--featured">
+        <div class="item-media">
+          <img src="https://images.pexels.com/photos/6786611/pexels-photo-6786611.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Camisa Arena" loading="lazy">
+        </div>
+        <div class="item-info">
+          <h3>Arena</h3>
+          <p class="desc">Tono neutro premium · Corte boxy contemporáneo</p>
+          <div class="price-action">
+            <span class="price">$480</span>
+            <a href="#" class="btn" data-product="Camisa Arena Nativo - $480" data-image="https://images.pexels.com/photos/6786611/pexels-photo-6786611.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2">Pedir →</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- Puedes duplicar <article class="item"> para más camisas -->
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Nativo · Orgullosamente de San Juan de los Lagos, Jalisco</p>
+    <p>Entregas rápidas en moto · Pago en efectivo al recibir</p>
+  </footer>
+
+  <script>
+    const phone = "523951024699";
+
+    document.querySelectorAll('.btn').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        const prod = el.dataset.product;
+        const img = el.dataset.image || '';
+        const imgPart = img ? `\nVer imagen: ${img}` : '';
+        const msg = `Hola Nativo 👋\nQuiero la:\n${prod}${imgPart}\n¿Tallas disponibles? ¿Cuándo entregan en San Juan?`;
+        window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+      });
+    });
+
+    window.addEventListener('scroll', () => {
+      document.querySelector('.header').classList.toggle('scrolled', window.scrollY > 50);
+    });
+  </script>
+</body>
+</html>
