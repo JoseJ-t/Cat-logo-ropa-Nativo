@@ -22,6 +22,7 @@ body {
   line-height: 1.5;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+  padding-top: 90px; /* espacio para header con logo grande */
 }
 
 /* Header */
@@ -38,7 +39,7 @@ body {
 .header.scrolled {
   background: rgba(10,10,10,0.92);
   backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* Safari fix */
+  -webkit-backdrop-filter: blur(12px);
   border-block-end: 1px solid rgba(255,255,255,0.08);
   padding: 0.9rem 5%;
 }
@@ -49,16 +50,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: nowrap; /* evita que se envuelva en líneas extras */
+  overflow: hidden;
 }
 
 .logo {
   position: relative;
   display: inline-block;
-  padding: 0.4rem 0.6rem; /* espacio sutil alrededor para que no se pegue al borde */
+  padding: 0.4rem 0.6rem;
+  flex-shrink: 0; /* el logo no se encoge */
 }
 
 .logo img {
-  height: 62px;               /* tamaño principal más grande */
+  height: 62px;
   max-height: 62px;
   width: auto;
   object-fit: contain;
@@ -66,41 +70,26 @@ body {
     brightness(1.15) 
     contrast(1.05)
     drop-shadow(0 0 10px rgba(255, 255, 255, 0.997))
-    drop-shadow(0 0 18px rgb(255, 255, 255));
+    drop-shadow(0 0 18px rgba(255, 255, 255, 0.8));
   transition: var(--transition);
 }
 
-/* Cuando el header está scrolled (más brillo y un toque más definido) */
 .header.scrolled .logo img {
-  height: 48px;               /* un poquito más pequeño al scrollear para no invadir */
+  height: 52px;
   filter: 
-    brightness(1.25) 
-    contrast(1.1)
-    drop-shadow(0 0 12px rgb(255, 255, 255))
-    drop-shadow(0 0 24px rgb(255, 255, 255));
+    brightness(1.3) 
+    contrast(1.15)
+    drop-shadow(0 0 14px rgba(255, 255, 255, 1))
+    drop-shadow(0 0 28px rgba(255, 255, 255, 0.7));
 }
 
-/* Mobile: tamaño equilibrado pero visible */
-@media (max-width: 480px) {
-  .logo {
-    padding: 0.3rem 0.5rem;
-  }
-
-  .logo img {
-    height: 62px;             /* más grande en cel para que se note bien */
-    max-height: 62px;
-    filter: 
-      brightness(1.3) 
-      contrast(1.1)
-      drop-shadow(0 0 14px rgb(255, 255, 255))
-      drop-shadow(0 0 26px rgb(255, 255, 255))
-  }
-
-  .header.scrolled .logo img {
-    height: 40px;
-  }
+/* Social icons */
+.social {
+  display: flex;
+  gap: 1.4rem; /* reducido para no ocupar tanto */
+  align-items: center;
+  flex-shrink: 0;
 }
-.social { display: flex; gap: 1.6rem; }
 
 .social img {
   height: 24px;
@@ -108,9 +97,60 @@ body {
   transition: var(--transition);
 }
 
-.social a:hover img { transform: scale(1.2); filter: brightness(1) invert(0.4) sepia(1) saturate(5) hue-rotate(320deg); }
+.social a:hover img {
+  transform: scale(1.2);
+  filter: brightness(1) invert(0.4) sepia(1) saturate(5) hue-rotate(320deg);
+}
 
-/* Hero fixes para mobile Safari */
+/* Mobile: Logo claro + iconos normales (no gigantes) */
+@media (max-width: 480px) {
+  body { padding-top: 100px; }
+
+  .header {
+    padding: 1rem 4%;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .header-inner {
+    padding: 0 0.5rem; /* menos padding lateral si es necesario */
+  }
+
+  .logo {
+    padding: 0.5rem 0.8rem;
+  }
+
+  .logo img {
+    height: 68px;
+    max-height: 68px;
+    filter: 
+      brightness(1.65) 
+      contrast(1.25)
+      drop-shadow(0 0 20px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 40px rgba(255, 255, 255, 0.85))
+      drop-shadow(0 0 60px rgba(255, 255, 255, 0.4));
+  }
+
+  .header.scrolled .logo img {
+    height: 52px;
+    filter: 
+      brightness(1.7)
+      contrast(1.3)
+      drop-shadow(0 0 18px rgba(255, 255, 255, 1))
+      drop-shadow(0 0 36px rgba(255, 255, 255, 0.9));
+  }
+
+  .social {
+    gap: 1.2rem; /* espacio más chico entre iconos */
+  }
+
+  .social img {
+    height: 22px; /* tamaño normal y discreto, no gigante */
+  }
+}
+
+/* Hero y resto sin cambios */
 .hero {
   position: relative;
   height: 100vh;
@@ -183,7 +223,7 @@ body {
   font-weight: 300;
 }
 
-/* Collection y resto igual, pero con ajustes mobile */
+/* Collection */
 .collection {
   padding: 8rem 5% 10rem;
   background: var(--bg);
@@ -252,23 +292,15 @@ body {
   border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-/* Mobile fixes agresivos */
+/* Mobile fixes generales */
 @media (max-width: 480px) {
-  body { padding-top: 70px; } /* espacio header */
-
-  .header { padding: 1rem 4%; background: rgba(10,10,10,0.85); backdrop-filter: none; -webkit-backdrop-filter: none; }
-
-  .logo img { height: 32px; }
-
-  .social img { height: 22px; }
-
   .hero {
     height: auto;
     min-height: 70vh;
     max-height: none;
   }
 
-  .hero-img { object-position: center 30%; } /* ajusta para no cortar partes clave */
+  .hero-img { object-position: center 30%; }
 
   .hero h1 { font-size: clamp(4rem, 15vw, 6.5rem); }
 
