@@ -369,7 +369,7 @@
         const prod = el.dataset.product;
         const img = el.dataset.image || '';
         const imgPart = img ? `\nVer imagen: ${img}` : '';
-        const msg = `¡Hola! Nativo 👋\nMe interesa la:\n${prod}${imgPart}\n¿Que tallas tienen disponibles?✨ ¿Cuándo seria la entrega?`;
+        const msg = `¡Hola!👋\nMe interesa la:\n${prod}${imgPart}\n¿Que tallas tienen disponibles?✨ ¿Cuándo seria la entrega del producto?`;
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`, '_blank');
       });
     });
