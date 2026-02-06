@@ -360,19 +360,20 @@
 
     document.querySelectorAll('.btn').forEach(el => {
       el.addEventListener('click', e => {
+        e.stopPropagation(); 
         e.preventDefault();
 
         const nombre = el.dataset.product || "Producto Nativo";
 
-        const base = window.location.href.split('index.html')[0];
+        const base = "https://josej-t.github.io/cat-logo-ropa-nativo/";
 
-        const rutaImagen = el.closest('.item').querySelector('img').getAttribute('src');
+        const itemPrincipal = el.closest('.item');
+        const rutaImagen = itemPrincipal.querySelector('img').getAttribute('src');
 
         const fotoLink = base + rutaImagen;
       
-        const mensaje = `¡Hola! 👋\n\nMe interesa el modelo: *${nombre}*\n\nReferencia:\n${fotoLink}\n\n¿Tienen tallas disponibles? ✨ ¿Cuándo podrían entregármelo en mi domicilio? 🛵`;
+        const mensaje = `¡Hola Nativo! 👋\n\nMe interesa este modelo:\n*${nombre}*\n\nReferencia de la pieza:\n${fotoLink}\n\n¿Tienen tallas disponibles? ✨\n\n🛵 *¿Cuándo podrían entregármelo en mi domicilio?*`;
       
-        // 6. Abre WhatsApp con todo listo
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(mensaje)}`, '_blank');
       });
     });
